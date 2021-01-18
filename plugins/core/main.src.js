@@ -21,10 +21,38 @@ parentEpml.ready().then(() => {
             parent: false
         },
         {
+            url: 'messaging',
+            domain: 'core',
+            page: 'messaging/index.html',
+            title: 'Chat',
+            icon: 'message',
+            menus: [
+                {
+                    url: 'chain-messaging',
+                    domain: 'core',
+                    page: 'messaging/chain-messaging/index.html',
+                    title: 'Chain Messaging',
+                    icon: 'toc',
+                    menus: [],
+                    parent: false
+                },
+                {
+                    url: 'q-chat',
+                    domain: 'core',
+                    page: 'messaging/q-chat/index.html',
+                    title: 'T-Chat',
+                    icon: 'toc',
+                    menus: [],
+                    parent: false
+                }
+            ],
+            parent: false
+        },
+        {
             url: 'send-coin',
             domain: 'core',
             page: 'send-coin/index.html',
-            title: 'Send Coin',
+            title: 'Make Payment',
             icon: 'send',
             menus: [],
             parent: false
@@ -48,48 +76,20 @@ parentEpml.ready().then(() => {
             parent: false
         },
         {
-            url: 'name-registration',
-            domain: 'core',
-            page: 'name-registration/index.html',
-            title: 'Name Registration',
-            icon: 'assignment_ind',
-            menus: [],
-            parent: false
-        },
-        {
-            url: 'messaging',
-            domain: 'core',
-            page: 'messaging/index.html',
-            title: 'Messaging',
-            icon: 'message',
-            menus: [
-                {
-                    url: 'chain-messaging',
-                    domain: 'core',
-                    page: 'messaging/chain-messaging/index.html',
-                    title: 'Chain Messaging',
-                    icon: 'toc',
-                    menus: [],
-                    parent: false
-                },
-                {
-                    url: 'q-chat',
-                    domain: 'core',
-                    page: 'messaging/q-chat/index.html',
-                    title: 'Q-Chat',
-                    icon: 'toc',
-                    menus: [],
-                    parent: false
-                }
-            ],
-            parent: false
-        },
-        {
             url: 'group-management',
             domain: 'core',
             page: 'group-management/index.html',
             title: 'Group Management',
             icon: 'group',
+            menus: [],
+            parent: false
+        },
+        {
+            url: 'name-registration',
+            domain: 'core',
+            page: 'name-registration/index.html',
+            title: 'Name Registration',
+            icon: 'assignment_ind',
             menus: [],
             parent: false
         }

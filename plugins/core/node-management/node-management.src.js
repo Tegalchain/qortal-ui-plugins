@@ -74,7 +74,7 @@ class NodeManagement extends LitElement {
         .node-card {
             /* margin:12px; */
             padding: 12px 24px;
-            background: #fff;
+            background: #b5f7f4;
             border-radius: 2px;
             box-shadow: 11;
         }

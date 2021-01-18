@@ -750,7 +750,7 @@ class ChatPage extends LitElement {
                                                 font-size: 1rem;
                                                 line-height: 1.38rem;
                                                 font-weight: 400;
-                                                font-family: "Open Sans", helvetica, sans-serif;
+                                                font-family: "Open Sans", "Suisse int’l", Aeonik, Apoc-serif;
                                                 padding-right: 3px;
                                                 text-align: left;
                                                 white-space: break-spaces;

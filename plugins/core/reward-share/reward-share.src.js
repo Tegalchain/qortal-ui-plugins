@@ -38,7 +38,7 @@ class RewardShare extends LitElement {
                 --paper-input-container-focus-color: var(--mdc-theme-primary);
             }
             #reward-share-page {
-                background: #fff;
+                background: #b5f7f4;
                 padding: 12px 24px;
             }
 

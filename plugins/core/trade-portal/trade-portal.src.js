@@ -49,7 +49,7 @@ class TradePortal extends LitElement {
 			}
 
 			#trade-portal-page {
-				background: #fff;
+				background: #b5f7f4;
 				padding: 12px 24px;
 			}
 
@@ -114,7 +114,7 @@ class TradePortal extends LitElement {
 
 			.trade-chart {
 				/* height: 300px; */
-				background-color: #eee;
+				background-color: #FFFDD0;
 				border: 2px #ddd solid;
 				text-align: center;
 			}
@@ -171,6 +171,10 @@ class TradePortal extends LitElement {
 				overflow: hidden;
 			}
 
+			vaadin-grid {
+				background-color: #FFFDD0;
+     		}
+		
 			.you-have {
 				color: #555;
 				font-size: 15px;
@@ -263,6 +267,10 @@ class TradePortal extends LitElement {
 					grid-auto-rows: max(400px);
 					column-gap: 0.5em;
 					row-gap: 0.4em;
+				}
+
+				.buy-sell >.box{
+					background-color: #FFFDD0;
 				}
 
 				#third-trade-section {

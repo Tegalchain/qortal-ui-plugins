@@ -195,7 +195,7 @@
         `}constructor(){super(),this.selectedAddress=window.parent.reduxStore.getState().app.selectedAddress.address,this.myAddress={},this.balance=1,this.btnDisable=!1,this.isLoading=!1}render(){return D`
             <div>
                 <div>
-                    <span class="welcome-title">Welcome to Q-Chat</span>
+                    <span class="welcome-title">Welcome to T-Chat</span>
                     <hr style="color: #eee; border-radius: 80%; margin-bottom: 2rem;">
                 </div>
                 <div class="sub-main">

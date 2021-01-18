@@ -22,7 +22,7 @@ class ChainMessaging extends LitElement {
             }
 
             #chain-messaging-page {
-                background:#fff;
+                background:#b5f7f4;
             }
 
         `

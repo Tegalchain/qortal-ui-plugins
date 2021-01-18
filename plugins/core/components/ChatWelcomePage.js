@@ -172,7 +172,7 @@ class ChatWelcomePage extends LitElement {
         return html`
             <div>
                 <div>
-                    <span class="welcome-title">Welcome to Q-Chat</span>
+                    <span class="welcome-title">Welcome to T-Chat</span>
                     <hr style="color: #eee; border-radius: 80%; margin-bottom: 2rem;">
                 </div>
                 <div class="sub-main">

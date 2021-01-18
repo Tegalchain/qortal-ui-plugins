@@ -12,7 +12,7 @@
             }
 
             #chain-messaging-page {
-                background:#fff;
+                background:#b5f7f4;
             }
 
         `}constructor(){super()}render(){return R`

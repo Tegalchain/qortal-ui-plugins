@@ -14,7 +14,7 @@ class Messaging extends LitElement {
                 --mdc-theme-primary: rgb(3, 169, 244);
             }
             #page {
-                background: #fff;
+                background: #b5f7f4;
                 padding: 12px 24px;
             }
 
@@ -29,7 +29,7 @@ class Messaging extends LitElement {
             }
 
             .major-title {
-                color: rgb(3, 169, 244);
+                color: #333/*rgb(3, 169, 244)*/;
                 margin-top: 1rem;
                 font-weight: 400;
                 font-size: 28px;
@@ -37,7 +37,7 @@ class Messaging extends LitElement {
             }
 
             .sub-title {
-                color: rgb(3, 169, 244);
+                color: #333/*rgb(3, 169, 244)*/;
                 margin-top: .5rem;
                 font-weight: 400;
                 /* font-size: 19px; */
@@ -46,6 +46,7 @@ class Messaging extends LitElement {
 
             .sub-title:hover {
                 cursor: pointer;                
+                color: rgb(3, 169, 244);
             }
 
             .sub-url {
@@ -63,6 +64,7 @@ class Messaging extends LitElement {
                 /** box-shadow: 0 1px 1px 0 rgba(0,0,0,0.14), 0 2px 1px -1px rgba(0,0,0,0.12), 0 1px 2px 0 rgba(0,0,0,0.20); **/
                 box-shadow: 0 .3px 1px 0 rgba(0,0,0,0.14), 0 1px 1px -1px rgba(0,0,0,0.12), 0 1px 2px 0 rgba(0,0,0,0.20);
                 margin-bottom: 1.5rem;
+                background-color: #FFFDD0;
             }
 
             p {
@@ -87,7 +89,7 @@ class Messaging extends LitElement {
                     <p style="font-size: 19px;">With this system, you are able to accomplish multiple types of messaging available to you in Qortal:</p>
                     <ul>
                         <li class="sub-url" @click=${() => this.getUrl('chain-messaging')}><strong>Chain Based Messaging</strong></li>
-                        <li class="sub-url" @click=${() => this.getUrl('q-chat')}><strong>Q-Chat</strong></li>
+                        <li class="sub-url" @click=${() => this.getUrl('q-chat')}><strong>T-Chat</strong></li>
                     </ul>
                 </div>
                 
@@ -110,14 +112,14 @@ class Messaging extends LitElement {
                 </div>
 
                 <div class="divCard">
-                    <h3 class="sub-title" @click=${() => this.getUrl('q-chat')}>Q-Chat</h3>
+                    <h3 class="sub-title" @click=${() => this.getUrl('q-chat')}>T-Chat</h3>
                     <p style="font-size: 17px;">Is a custom chat system that is UNLIKE ANY OTHER in existence. It is the FIRST OF ITS KIND IN THE WORLD. 
                     It is a real-time, blockchain-based chat system that utilizes a memory-based PoW (Proof Of Work) algorithm, to implement a specialized transaction that is 'temporary', on the Qortal blockchain. 
-                    Q-Chat messages will DISSAPEAR AFTER 24 HOURS and therefore are not a great choice for things you wish to be permanent.</p>
+                    T-Chat messages will DISSAPEAR AFTER 24 HOURS and therefore are not a great choice for things you wish to be permanent.</p>
 
                     <ul>
                         <li style="font-size: 17px; padding: 10px;"><strong>In the future, there will be a 'pinning' system</strong>, that will allow you to convert, or send messages by default with, the ability to stay forever on the Qortal Blockchain. So that if you DO decide that you like a message enough to keep it forever, you may do so.</li>
-                        <li style="font-size: 17px; padding: 10px;"><strong>Q-chat messages are encrypted</strong> (at the moment in June, 2020, Q-chat PM's are encrypted, but the group messages are base58 encoded, meaning they aren't plain text, but if you're smart you can decode them. However, IN THE NEAR FUTURE, ALL MESSAGES REGARDLESS OF GROUP OR PM WILL BE DEFAULT ENCRYPTED WITH PUB/PRIV KEY OF YOUR QORTAL ACCOUNT.</li>
+                        <li style="font-size: 17px; padding: 10px;"><strong>T-chat messages are encrypted</strong> (at the moment in June, 2020, T-chat PM's are encrypted, but the group messages are base58 encoded, meaning they aren't plain text, but if you're smart you can decode them. However, IN THE NEAR FUTURE, ALL MESSAGES REGARDLESS OF GROUP OR PM WILL BE DEFAULT ENCRYPTED WITH PUB/PRIV KEY OF YOUR QORTAL ACCOUNT.</li>
                         <li style="font-size: 17px; padding: 10px;">Uses a UNIQUE memory-based PoW algorithm, to send messages FREE (no transaction fee)</li>
                         <li style="font-size: 17px; padding: 10px;">Text-based messaging for the future.</li>
                     </ul>

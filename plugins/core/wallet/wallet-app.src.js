@@ -83,10 +83,10 @@ class MultiWallet extends LitElement {
 					font-style: italic;
 				}
 				.roboto {
-					font-family: 'Roboto', sans-serif;
+					font-family: "Suisse Int'l", Aeonik;
 				}
 				.mono {
-					font-family: 'Roboto Mono', monospace;
+					font-family: "Suisse Int'l", Aeonik;
 				}
 				.weight-100 {
 					font-weight: 100;
@@ -115,7 +115,7 @@ class MultiWallet extends LitElement {
 					text-align: left;
 					font-size: 14px;
 					padding: 0 12px;
-					font-family: 'Roboto', sans-serif;
+					font-family: Suisse Int'l, Aeonik;
 				}
 				table tr {
 					height: 48px;
@@ -184,8 +184,8 @@ class MultiWallet extends LitElement {
 				h2 {
 					margin: 0;
 					font-weight: 400;
-					color: #707584;
-					font: 24px/24px 'Open Sans', sans-serif;
+					color: #333/*#707584*/;
+					font: 24px/24px Suisse Int'l, Aeonik;
 				}
 
 				h3 {
@@ -208,12 +208,12 @@ class MultiWallet extends LitElement {
 					height: 100%;
 					overflow: hidden;
 					border-radius: 8px;
-					background-color: #fff;
+					background-color: #b5f7f4;
 				}
 
 				.wallet {
 					width: 250px;
-					background-color: #f2f2f2;
+					background-color: #b5f7f4;
 					height: 100%;
 					border-top-left-radius: inherit;
 					border-bottom-left-radius: inherit;
@@ -313,7 +313,7 @@ class MultiWallet extends LitElement {
 				}
 
 				.currency-box {
-					background-color: #fff;
+					background-color: #FFFDD0;
 					text-align: center;
 					padding: 15px;
 					margin-bottom: 45px;
@@ -342,6 +342,10 @@ class MultiWallet extends LitElement {
 
 				.qort .currency-image {
 					background-image: url('/img/qort.png');
+				}
+
+				.tega .currency-image {
+					background-image: url('/img/tega.png');
 				}
 
 				.btc .currency-image {
@@ -446,7 +450,7 @@ class MultiWallet extends LitElement {
 						padding: 50px 25px;
 					}
 					h2 {
-						font: 18px/24px 'Open Sans', sans-serif;
+						font: 18px/24px Suisse Int'l, Aeonik;
 					}
 				}
 			`,
@@ -467,6 +471,7 @@ class MultiWallet extends LitElement {
 		this.qortWallet = {}
 		this.btcWallet = {}
 		this.ltcWallet = {}
+		this.tegaWallet = {}
 		this.selectedTransaction = {}
 		this.isTextMenuOpen = false
 		this.loading = true
@@ -476,6 +481,7 @@ class MultiWallet extends LitElement {
 		this.qortWallet = window.parent.reduxStore.getState().app.selectedAddress
 		this.btcWallet = window.parent.reduxStore.getState().app.selectedAddress.btcWallet
 		this.ltcWallet = window.parent.reduxStore.getState().app.selectedAddress.ltcWallet
+		this.tegaWallet = window.parent.reduxStore.getState().app.selectedAddress
 
 		this.selectedWallet = {
 			type: 'qort',
@@ -490,6 +496,7 @@ class MultiWallet extends LitElement {
 				this.qortWallet = selectedAddress
 				this.btcWallet = selectedAddress.btcWallet
 				this.ltcWallet = selectedAddress.ltcWallet
+				this.tegaWallet = selectedAddress
 
 				// this.updateAccountTransactions();
 			})
@@ -516,6 +523,9 @@ class MultiWallet extends LitElement {
 							<div class="currency-image"></div>
 						</div>
 						<div type="ltc" class="currency-box ltc">
+							<div class="currency-image"></div>
+						</div>
+						<div type="tega" class="currency-box tega">
 							<div class="currency-image"></div>
 						</div>
 					</div>
@@ -848,6 +858,13 @@ class MultiWallet extends LitElement {
 				wallet: this.ltcWallet,
 			}
 			this.showBTCLikeWallet()
+		} else if (target.attributes.type.value === 'tega') {
+			this.selectedWallet = {
+				type: target.attributes.type.value,
+				currencyBox: target,
+				wallet: this.tegaWallet,
+			}
+			this.showQortWallet()
 		}
 	}
 

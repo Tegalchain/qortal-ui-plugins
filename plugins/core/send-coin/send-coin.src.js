@@ -27,6 +27,7 @@ class SendMoneyPage extends LitElement {
 			qortBalance: { type: Number },
 			btcBalance: { type: Number },
 			ltcBalance: { type: Number },
+			tegaBalance: { type: Number },
 			selectedCoin: { type: String },
 			satFeePerByte: { type: Number },
 		}
@@ -109,11 +110,11 @@ class SendMoneyPage extends LitElement {
 
 	render() {
 		return html`
-			<div id="sendMoneyWrapper" style="width:auto; padding:10px; background: #fff; height:100vh;">
+			<div id="sendMoneyWrapper" style="width:auto; padding:10px; background: #b5f7f4; height:100vh;">
 				<div class="layout horizontal center" style=" padding:12px 15px;">
 					<paper-card style="width:100%; max-width:740px;">
 						<div style="background-color: ${this.selectedAddress.color}; margin:0; color: ${this.textColor(this.selectedAddress.textColor)};">
-							<h3 style="margin:0; padding:8px 0;">Send Coin</h3>
+							<h3 style="margin:0; padding:8px 0;">Make Payment</h3>
 
 							<div class="selectedBalance">
 								<span id="balance"></span> available for transfer from
@@ -126,6 +127,7 @@ class SendMoneyPage extends LitElement {
 							<mwc-list-item value="qort">QORT</mwc-list-item>
 							<mwc-list-item value="btc">BTC</mwc-list-item>
 							<mwc-list-item value="ltc">LTC</mwc-list-item>
+							<mwc-list-item value="tega">TEGA</mwc-list-item>
 						</mwc-select>
 					</p>
 					<p>
@@ -266,10 +268,144 @@ class SendMoneyPage extends LitElement {
 			this.sendBtc()
 		} else if (this.selectedCoin === 'ltc') {
 			this.sendLtc()
+		} else if (this.selectedCoin === 'tega') {
+			this.sendTega()
 		}
 	}
 
 	async sendQort() {
+		const amount = this.shadowRoot.getElementById('amountInput').value
+		let recipient = this.shadowRoot.getElementById('recipient').value
+
+		this.sendMoneyLoading = true
+		this.btnDisable = true
+
+		if (parseFloat(amount) + parseFloat(0.001) > parseFloat(this.balance)) {
+			this.sendMoneyLoading = false
+			this.btnDisable = false
+
+			parentEpml.request('showSnackBar', 'Insufficient Funds!')
+			return false
+		}
+
+		if (parseFloat(amount) <= 0) {
+			this.sendMoneyLoading = false
+			this.btnDisable = false
+
+			parentEpml.request('showSnackBar', 'Invalid Amount!')
+			return false
+		}
+
+		if (recipient.length === 0) {
+			this.sendMoneyLoading = false
+			this.btnDisable = false
+
+			parentEpml.request('showSnackBar', 'Receiver cannot be empty!')
+			return false
+		}
+
+		const getLastRef = async () => {
+			let myRef = await parentEpml.request('apiCall', {
+				type: 'api',
+				url: `/addresses/lastreference/${this.selectedAddress.address}`,
+			})
+			return myRef
+		}
+
+		const validateName = async (receiverName) => {
+			let myRes
+			let myNameRes = await parentEpml.request('apiCall', {
+				type: 'api',
+				url: `/names/${receiverName}`,
+			})
+
+			if (myNameRes.error === 401) {
+				myRes = false
+			} else {
+				myRes = myNameRes
+			}
+
+			return myRes
+		}
+
+		const validateAddress = async (receiverAddress) => {
+			let myAddress = await window.parent.validateAddress(receiverAddress)
+			return myAddress
+		}
+
+		const validateReceiver = async (recipient) => {
+			let lastRef = await getLastRef()
+			let isAddress
+
+			try {
+				isAddress = await validateAddress(recipient)
+			} catch (err) {
+				isAddress = false
+			}
+
+			if (isAddress) {
+				let myTransaction = await makeTransactionRequest(recipient, lastRef)
+				getTxnRequestResponse(myTransaction)
+			} else {
+				let myNameRes = await validateName(recipient)
+				if (myNameRes !== false) {
+					let myNameAddress = myNameRes.owner
+					let myTransaction = await makeTransactionRequest(myNameAddress, lastRef)
+					getTxnRequestResponse(myTransaction)
+				} else {
+					console.error('INVALID_RECEIVER')
+					this.errorMessage = 'INVALID_RECEIVER'
+					this.sendMoneyLoading = false
+					this.btnDisable = false
+				}
+			}
+		}
+
+		const makeTransactionRequest = async (receiver, lastRef) => {
+			let myReceiver = receiver
+			let mylastRef = lastRef
+
+			let myTxnrequest = await parentEpml.request('transaction', {
+				type: 2,
+				nonce: this.selectedAddress.nonce,
+				params: {
+					recipient: myReceiver,
+					amount: amount,
+					lastReference: mylastRef,
+					fee: 0.001,
+				},
+			})
+
+			return myTxnrequest
+		}
+
+		const getTxnRequestResponse = (txnResponse) => {
+			if (txnResponse.success === false && txnResponse.message) {
+				this.errorMessage = txnResponse.message
+				this.sendMoneyLoading = false
+				this.btnDisable = false
+				throw new Error(txnResponse)
+			} else if (txnResponse.success === true && !txnResponse.data.error) {
+				this.shadowRoot.getElementById('amountInput').value = ''
+				this.shadowRoot.getElementById('recipient').value = ''
+				this.errorMessage = ''
+				this.recipient = ''
+				this.amount = 0
+				this.successMessage = 'Transaction Successful!'
+				this.sendMoneyLoading = false
+				this.btnDisable = false
+			} else {
+				this.errorMessage = txnResponse.data.message
+				this.sendMoneyLoading = false
+				this.btnDisable = false
+				throw new Error(txnResponse)
+			}
+		}
+
+		validateReceiver(recipient)
+	}
+
+	async sendTega() {
 		const amount = this.shadowRoot.getElementById('amountInput').value
 		let recipient = this.shadowRoot.getElementById('recipient').value
 
@@ -552,6 +688,7 @@ class SendMoneyPage extends LitElement {
 		this.btcBalance = 0
 		this.ltcBalance = 0
 		this.selectedCoin = 'invalid'
+		this.tegaBalance = 0
 
 		let configLoaded = false
 		parentEpml.ready().then(() => {
@@ -699,6 +836,13 @@ class SendMoneyPage extends LitElement {
 			this.shadowRoot.getElementById('feeSlider').min = this.ltcSatMinFee
 			this.shadowRoot.getElementById('feeSlider').max = this.ltcSatMaxFee
 			this.satFeePerByte = this.ltcDefaultFee
+		} else if (coinType === 'tega') {
+			this.shadowRoot.getElementById('balance').textContent = `${this.tegaBalance} TEGA`
+			this.shadowRoot.getElementById('address').textContent = this.selectedAddress.address
+			this.shadowRoot.querySelector('.selectedBalance').style.display = 'block'
+			this.shadowRoot.getElementById('amountInput').label = 'Amount (TEGA)'
+			this.shadowRoot.getElementById('recipient').label = 'To (address or name)'
+			this.satFeePerByte = 100000
 		} else {
 			this.selectedCoin = 'invalid'
 		}

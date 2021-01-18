@@ -68,6 +68,7 @@ class Chat extends LitElement {
                 height: 100vh;
                 overflow-y: hidden;
                 border-right: 3px #ddd solid;
+                background-color: #b5f7f4;
             }
 
             .people-list .search {
@@ -103,7 +104,7 @@ class Chat extends LitElement {
                 width: 80vw;
                 height: 100vh;
                 float: left;
-                background: #fff;
+                background: #b5f7f4;
                 border-top-right-radius: 5px;
                 border-bottom-right-radius: 5px;
                 color: #434651;
@@ -357,7 +358,7 @@ class Chat extends LitElement {
 
     renderChatPage(chatId) {
         // Check for the chat ID from and render chat messages
-        // Else render Welcome to Q-CHat
+        // Else render Welcome to T-CHat
 
         // TODO: DONE: Do the above in the ChatPage 
 
