@@ -114,7 +114,7 @@ class TradePortal extends LitElement {
 
 			.trade-chart {
 				/* height: 300px; */
-				background-color: #FFFDD0;
+				background-color: #fffeea;
 				border: 2px #ddd solid;
 				text-align: center;
 			}
@@ -172,7 +172,7 @@ class TradePortal extends LitElement {
 			}
 
 			vaadin-grid {
-				background-color: #FFFDD0;
+				background-color: #fffeea;
      		}
 		
 			.you-have {
@@ -270,7 +270,7 @@ class TradePortal extends LitElement {
 				}
 
 				.buy-sell >.box{
-					background-color: #FFFDD0;
+					background-color: #fffeea;
 				}
 
 				#third-trade-section {
@@ -317,7 +317,7 @@ class TradePortal extends LitElement {
 		return html`
 			<div id="trade-portal-page">
 				<div style="min-height:48px; display: flex; padding-bottom: 6px; margin: 2px;">
-					<h2 style="margin: 0; flex: 1; padding-top: .1em; display: inline;">Trade Portal - QORT/LTC</h2>
+					<h2 style="margin: 0; flex: 1; padding-top: .1em; display: inline;">Trade Portal - QORT/LTC/TGL</h2>
 				</div>
 
 				<div id="trade-portal">
