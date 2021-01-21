@@ -344,8 +344,8 @@ class MultiWallet extends LitElement {
 					background-image: url('/img/qort.png');
 				}
 
-				.tega .currency-image {
-					background-image: url('/img/tega.png');
+				.tgl .currency-image {
+					background-image: url('/img/tgl.png');
 				}
 
 				.btc .currency-image {
@@ -471,7 +471,7 @@ class MultiWallet extends LitElement {
 		this.qortWallet = {}
 		this.btcWallet = {}
 		this.ltcWallet = {}
-		this.tegaWallet = {}
+		this.tglWallet = {}
 		this.selectedTransaction = {}
 		this.isTextMenuOpen = false
 		this.loading = true
@@ -481,7 +481,7 @@ class MultiWallet extends LitElement {
 		this.qortWallet = window.parent.reduxStore.getState().app.selectedAddress
 		this.btcWallet = window.parent.reduxStore.getState().app.selectedAddress.btcWallet
 		this.ltcWallet = window.parent.reduxStore.getState().app.selectedAddress.ltcWallet
-		this.tegaWallet = window.parent.reduxStore.getState().app.selectedAddress.tegaWallet
+		this.tglWallet = window.parent.reduxStore.getState().app.selectedAddress.tglWallet
 
 		this.selectedWallet = {
 			type: 'qort',
@@ -496,7 +496,7 @@ class MultiWallet extends LitElement {
 				this.qortWallet = selectedAddress
 				this.btcWallet = selectedAddress.btcWallet
 				this.ltcWallet = selectedAddress.ltcWallet
-				this.tegaWallet = selectedAddress.tegaWallet
+				this.tglWallet = selectedAddress.tglWallet
 
 				// this.updateAccountTransactions();
 			})
@@ -525,7 +525,7 @@ class MultiWallet extends LitElement {
 						<div type="ltc" class="currency-box ltc">
 							<div class="currency-image"></div>
 						</div>
-						<div type="tega" class="currency-box tega">
+						<div type="tgl" class="currency-box tgl">
 							<div class="currency-image"></div>
 						</div>
 					</div>
@@ -858,11 +858,11 @@ class MultiWallet extends LitElement {
 				wallet: this.ltcWallet,
 			}
 			this.showBTCLikeWallet()
-		} else if (target.attributes.type.value === 'tega') {
+		} else if (target.attributes.type.value === 'tgl') {
 			this.selectedWallet = {
 				type: target.attributes.type.value,
 				currencyBox: target,
-				wallet: this.tegaWallet,
+				wallet: this.tglWallet,
 			}
 			this.showBTCLikeWallet()
 		}

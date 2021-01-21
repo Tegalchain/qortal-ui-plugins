@@ -27,7 +27,7 @@ class SendMoneyPage extends LitElement {
 			qortBalance: { type: Number },
 			btcBalance: { type: Number },
 			ltcBalance: { type: Number },
-			tegaBalance: { type: Number },
+			tglBalance: { type: Number },
 			selectedCoin: { type: String },
 			satFeePerByte: { type: Number },
 		}
@@ -127,7 +127,7 @@ class SendMoneyPage extends LitElement {
 							<mwc-list-item value="qort">QORT</mwc-list-item>
 							<mwc-list-item value="btc">BTC</mwc-list-item>
 							<mwc-list-item value="ltc">LTC</mwc-list-item>
-							<mwc-list-item value="tega">TEGA</mwc-list-item>
+							<mwc-list-item value="tgl">TGL</mwc-list-item>
 						</mwc-select>
 					</p>
 					<p>
@@ -268,8 +268,8 @@ class SendMoneyPage extends LitElement {
 			this.sendBtc()
 		} else if (this.selectedCoin === 'ltc') {
 			this.sendLtc()
-		} else if (this.selectedCoin === 'tega') {
-			this.sendTega()
+		} else if (this.selectedCoin === 'tgl') {
+			this.sendTgl()
 		}
 	}
 
@@ -405,7 +405,7 @@ class SendMoneyPage extends LitElement {
 		validateReceiver(recipient)
 	}
 
-	async sendTega() {
+	async sendTgl() {
 		const amount = this.shadowRoot.getElementById('amountInput').value
 		let recipient = this.shadowRoot.getElementById('recipient').value
 
@@ -688,7 +688,7 @@ class SendMoneyPage extends LitElement {
 		this.btcBalance = 0
 		this.ltcBalance = 0
 		this.selectedCoin = 'invalid'
-		this.tegaBalance = 0
+		this.tglBalance = 0
 
 		let configLoaded = false
 		parentEpml.ready().then(() => {
@@ -836,11 +836,11 @@ class SendMoneyPage extends LitElement {
 			this.shadowRoot.getElementById('feeSlider').min = this.ltcSatMinFee
 			this.shadowRoot.getElementById('feeSlider').max = this.ltcSatMaxFee
 			this.satFeePerByte = this.ltcDefaultFee
-		} else if (coinType === 'tega') {
-			this.shadowRoot.getElementById('balance').textContent = `${this.tegaBalance} TEGA`
+		} else if (coinType === 'tgl') {
+			this.shadowRoot.getElementById('balance').textContent = `${this.tglBalance} TGL`
 			this.shadowRoot.getElementById('address').textContent = this.selectedAddress.address
 			this.shadowRoot.querySelector('.selectedBalance').style.display = 'block'
-			this.shadowRoot.getElementById('amountInput').label = 'Amount (TEGA)'
+			this.shadowRoot.getElementById('amountInput').label = 'Amount (TGL)'
 			this.shadowRoot.getElementById('recipient').label = 'To (address or name)'
 			this.satFeePerByte = 100000
 		} else {
