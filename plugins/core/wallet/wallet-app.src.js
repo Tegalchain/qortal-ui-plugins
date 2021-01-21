@@ -481,7 +481,7 @@ class MultiWallet extends LitElement {
 		this.qortWallet = window.parent.reduxStore.getState().app.selectedAddress
 		this.btcWallet = window.parent.reduxStore.getState().app.selectedAddress.btcWallet
 		this.ltcWallet = window.parent.reduxStore.getState().app.selectedAddress.ltcWallet
-		this.tegaWallet = window.parent.reduxStore.getState().app.selectedAddress
+		this.tegaWallet = window.parent.reduxStore.getState().app.selectedAddress.tegaWallet
 
 		this.selectedWallet = {
 			type: 'qort',
@@ -496,7 +496,7 @@ class MultiWallet extends LitElement {
 				this.qortWallet = selectedAddress
 				this.btcWallet = selectedAddress.btcWallet
 				this.ltcWallet = selectedAddress.ltcWallet
-				this.tegaWallet = selectedAddress
+				this.tegaWallet = selectedAddress.tegaWallet
 
 				// this.updateAccountTransactions();
 			})
@@ -864,7 +864,7 @@ class MultiWallet extends LitElement {
 				currencyBox: target,
 				wallet: this.tegaWallet,
 			}
-			this.showQortWallet()
+			this.showBTCLikeWallet()
 		}
 	}
 
