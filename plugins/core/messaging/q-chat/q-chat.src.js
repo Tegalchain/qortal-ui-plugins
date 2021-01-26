@@ -241,7 +241,7 @@ class Chat extends LitElement {
                 padding: 10px 20px;
                 border-radius: 5px;
                 resize: none;
-                background: #eee;
+                background: #b5f7f4;
             }
             .textarea {
                 width: 100%;
@@ -252,7 +252,7 @@ class Chat extends LitElement {
                 border-radius: 5px;
                 height: 120px;
                 resize: none;
-                background: #eee;
+                background: #b5f7f4;
             }
     `
     }

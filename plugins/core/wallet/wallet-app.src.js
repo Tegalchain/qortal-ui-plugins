@@ -121,7 +121,7 @@ class MultiWallet extends LitElement {
 					height: 48px;
 				}
 				table tr:hover td {
-					background: #eee;
+					background: #b5f7f4;
 				}
 				table tr th {
 					color: #666;
